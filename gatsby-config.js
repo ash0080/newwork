@@ -1,13 +1,18 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
     title: "newwork",
+    siteUrl: process.env.GATSBY_SITE_URL
   },
   plugins: [
     {
       resolve: "gatsby-source-contentful",
       options: {
-        accessToken: "yT_CPcOYO__kkwRd-KCLIyBmgy3WvbSZnSrV9IO3z5U",
-        spaceId: "jihl64eur7hm",
+        accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
+        spaceId: process.env.CONTENTFUL_SPACE_ID,
       },
     },
     "gatsby-plugin-theme-ui",
