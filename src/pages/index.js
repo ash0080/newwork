@@ -9,7 +9,7 @@ import { jsx, Grid, Button, Flex, useThemeUI } from 'theme-ui'
 import { BLOCKS, INLINES } from "@contentful/rich-text-types"
 import { renderRichText } from "gatsby-source-contentful/rich-text"
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-
+import preview from '../images/preview.jpg'
 // import { stripHtml } from "string-strip-html";
 // import { renderToString } from 'react-dom/server'
 import Excerpt from '../components/excerpt'
@@ -156,9 +156,19 @@ const IndexPage = () => {
 
   return (
     <Layout title={"NEWWORK"} slogan={data.contentfulPage.slogan}>
-      <Helmet>
+      <Helmet
+        encodeSpecialCharacters={true}
+        defer={false}
+      >
+        <html lang="zh" amp />
         <title>NEWWORK.CC</title>
-        <meta property="pg:title" content="NEWWORK" />
+        <meta name="description" content="串烤单词,像撸串一样记忆单词" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://newwork.cc" />
+        <meta property="og:description" content="串烤单词,像撸串一样记忆单词" />
+        <meta property="og:title" content="NEWWORK" />
+        <meta property="og:image" content={preview} />
+        <link rel="canonical" href="https://newwork.cc" />
       </Helmet>
       <Grid columns={'repeat(5,1fr)'} sx={{ gridAutoRows: 'min-content' }} >
         {data.contentfulPage.posts.map((post, idx) => (
@@ -184,7 +194,7 @@ const IndexPage = () => {
                 {post.excerpt ? post.excerpt.excerpt : documentToPlainTextString(JSON.parse(post.body.raw))}
               </p> */}
               <Excerpt
-                style={{ lineHeight: 1.2, fontSize: fluidSize([15, 18, 22, 22]) }}
+                style={{ lineHeight: [1.25, 1.5], fontSize: fluidSize([15, 18, 22, 22]) }}
                 link={post.slug && `/blog/${post.slug}`}
                 color='white'
                 more=''

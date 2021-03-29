@@ -6,7 +6,8 @@ import Layout from '../../components/layout'
 import { jsx, Themed, Flex } from 'theme-ui'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-
+import { Helmet } from 'react-helmet'
+import preview from '../../images/blog_preview.jpg'
 // import { stripHtml } from "string-strip-html";
 // import { renderToString } from 'react-dom/server'
 import Excerpt from '../../components/excerpt'
@@ -66,6 +67,20 @@ const BlogPage = () => {
     const length = data.allContentfulBlogPost.nodes.length
     return (
         <Layout title="BLOG" slogan="">
+            <Helmet
+                encodeSpecialCharacters={true}
+                defer={false}
+            >
+                <html lang="zh" amp />
+                <title>NEWWORK.CC - BLOG</title>
+                <meta name="description" content="博客" />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://newwork.cc/blog" />
+                <meta property="og:description" content="博客" />
+                <meta property="og:title" content="NEWWORK" />
+                <meta property="og:image" content={preview} />
+                <link rel="canonical" href="https://newwork.cc/blog" />
+            </Helmet>
             <main sx={{ color: 'black' }} >
                 {data.allContentfulBlogPost.nodes.map((node, idx) => (
                     <div key={idx}>

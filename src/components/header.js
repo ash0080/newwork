@@ -5,7 +5,7 @@ import { jsx, Grid, useThemeUI } from 'theme-ui'
 import { StaticImage } from "gatsby-plugin-image"
 import AutoLink from './autolink'
 import { elastic as Menu } from 'react-burger-menu'
-
+import logo from '../images/logo.svg'
 // make a new context
 const MyContext = React.createContext();
 
@@ -146,7 +146,8 @@ const Header = () => {
             <header sx={{ display: 'flex', height: 75, alignItems: 'center', justifyContent: 'space-between', p: '0 .5rem', bg: 'primaryDark' }}>
                 <div sx={{ flex: 1 }}>
                     <AutoLink url='/'>
-                        <StaticImage loading="lazy" placeholder="blurred" formats={['auto', 'png']} blurredOptions={{ width: 60, toFormat: 'png' }} alt="logo" src="../images/logo.svg"></StaticImage>
+                        <img src={logo} alt="logo" />
+                        {/* <StaticImage loading="lazy" placeholder="blurred" formats={['png']} blurredOptions={{ width: 120, toFormat: 'png' }} alt="logo" src="../images/logo.svg"></StaticImage> */}
                     </AutoLink>
                 </div>
                 <Grid sx={{ flex: 3, display: ['none', null, 'grid'] }} columns={'2fr 1fr'}>

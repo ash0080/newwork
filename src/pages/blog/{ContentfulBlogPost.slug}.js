@@ -7,6 +7,16 @@ import { graphql } from 'gatsby'
 import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import Layout from '../../components/layout'
 import Comments from '../../components/comments'
+import { Helmet } from 'react-helmet'
+import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
+import {
+    FacebookShareButton,
+    FacebookIcon,
+    TelegramShareButton,
+    TelegramIcon,
+    TwitterShareButton,
+    TwitterIcon
+} from "react-share";
 
 const Bold = ({ children }) => <strong>{children}</strong>
 const Text = ({ children }) => <p className="align-center">{children}</p>
@@ -88,9 +98,25 @@ export const query = graphql`
 
 const BlogTemplate = (props) => {
     const maxWidth = 1040
+    const description = documentToPlainTextString(JSON.parse(props.data.contentfulBlogPost.body.raw)).trim().slice(0, 140)
     // return <div>{body && renderRichText(body, options)}</div>
     return (
         <Layout maxWidth={maxWidth}>
+            <Helmet
+                encodeSpecialCharacters={true}
+                defer={false}
+                titleTemplate="%s | NEWWORK.CC"
+            >
+                <html lang="zh" amp />
+                <title>{props.data.contentfulBlogPost.title}</title>
+                <meta name="description" content={description} />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`} />
+                <meta property="og:description" content={description} />
+                <meta property="og:title" content={props.data.contentfulBlogPost.title} />
+                <meta property="og:image" content={`http://newwork.cc/og/${props.data.contentfulBlogPost.slug}.png`} />
+                <link rel="canonical" href={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`} />
+            </Helmet>
             <div
                 sx={{
                     display: 'flex',
@@ -103,7 +129,7 @@ const BlogTemplate = (props) => {
                         maxWidth: 675,
                         mr: [0, 0, '3rem']
                     }}>
-                    <h1>{props.data.contentfulBlogPost.title}</h1>
+                    <h1 sx={{ marginBlockStart: 0 }}>{props.data.contentfulBlogPost.title}</h1>
                     {renderRichText(props.data.contentfulBlogPost.body, options)}
                     <Divider sx={{ pt: '4rem', display: ['block', 'block', 'none'] }} />
                 </main>
@@ -113,6 +139,34 @@ const BlogTemplate = (props) => {
                         flex: 1,
                         flexBasis: 'sidebar',
                     }}>
+                    <small>如您觉得有用,请分享给一个朋友</small>
+                    <div sx={{
+                        p: '1rem 0 2rem 0',
+                        'button:not(:last-child)': {
+                            mr: '3px'
+                        }
+                    }}>
+                        <FacebookShareButton
+                            url={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`}
+                            quote={`${props.data.contentfulBlogPost.title} | NEWWORK.CC`}
+                        >
+                            <FacebookIcon size={32} borderRadius={8} round={false} />
+                        </FacebookShareButton>
+                        <TwitterShareButton
+                            url={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`}
+                            title={`${props.data.contentfulBlogPost.title} | NEWWORK.CC`}
+                            via={description}
+                        >
+                            <TwitterIcon size={32} borderRadius={8} round={false} />
+                        </TwitterShareButton>
+                        <TelegramShareButton
+                            url={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`}
+                            title={`${props.data.contentfulBlogPost.title} | NEWWORK.CC`}
+                        >
+                            <TelegramIcon size={32} borderRadius={8} round={false} />
+                        </TelegramShareButton>
+                    </div>
+                    <small>以下是评论功能 ( 如无显示您可能需要梯子 )</small>
                     <Comments />
                 </aside>
             </div>
