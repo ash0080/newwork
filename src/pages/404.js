@@ -1,53 +1,71 @@
-import * as React from "react"
+/** @jsx jsx */
+import React from 'react'
+import { jsx, Flex } from 'theme-ui'
 import { Link } from "gatsby"
+import { StaticImage } from "gatsby-plugin-image"
+import AutoLink from '../components/autolink'
+import GlobalStyle from '../components/global'
 
-// styles
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
-
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-// markup
-const NotFoundPage = () => {
+const NotFoundPage = (props) => {
+  const maxWidth = props.maxWidth || 960
   return (
-    <main style={pageStyles}>
-      <title>Not found</title>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry{" "}
-        <span role="img" aria-label="Pensive emoji">
-          😔
-        </span>{" "}
-        we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Flex sx={{ bg: 'gray', flexDirection: 'column', minHeight: '100vh', alignItems: 'center' }} id='outer-container'>
+      <GlobalStyle />
+      <section sx={{ height: '100%', width: '100%', maxWidth: 1200, display: 'flex', flexDirection: 'column' }} >
+        <header sx={{ display: 'flex', p: '0 .5rem', height: 75, alignItems: 'center', justifyContent: 'space-between' }}>
+          <AutoLink url='/'>
+            <StaticImage sx={{ img: { filter: 'invert(100%)' } }} loading="lazy" placeholder="blurred" formats={['auto', 'png']} blurredOptions={{ width: 60, toFormat: 'png' }} alt="logo" src="../images/logo.svg"></StaticImage>
+          </AutoLink>
+        </header>
+      </section>
+      <section
+        id='page-wrap'
+        sx={{
+          maxWidth,
+          mt: ['2rem', '4rem'],
+          mb: '6rem',
+          p: '0 1rem',
+          color: "#232129",
+          display: 'flex',
+          flexDirection: ['column', 'row'],
+          justifyContent: 'center',
+          flexGrow: 1
+        }}>
+        <main sx={{
+          flex: 99999,
+          maxWidth: 660,
+          mr: [0, 0, '5rem'],
+          mb: '3rem'
+        }}>
+          <h1 sx={{ marginBlockEnd: '.5em', marginBlockStart: 0, fontSize: [72] }}>Oops!</h1>
+          <h3 sx={{ marginBlockStart: 0, fontSize: [32] }}>We can't seem to find the page you're looking for.</h3>
+          <p sx={{ pb: '2rem' }}>Error code: 404</p>
+          <Link to="/">Back to home</Link>
+        </main>
+        <aside
+          sx={{
+            minWidth: 300,
+            flex: 1,
+            flexBasis: 'sidebar',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center'
+          }}>
+          <StaticImage sx={{}} width={300} loading="lazy" placeholder="blurred" formats={['auto', 'jpg']} blurredOptions={{ width: 60, toFormat: 'jpg' }} alt="logo" src="../images/404.jpg"></StaticImage>
+          <div sx={{ textAlign: 'center' }}>
+            <p>
+              <small>“Film” (1965)</small>
+            </p>
+            <p>
+              <small>A silent short starring Buster Keaton and scripted by Samuel Beckett.</small>
+            </p>
+            {/* <p>
+              <small>by Delicious Design League</small>
+            </p> */}
+          </div>
+        </aside>
+      </section>
+    </Flex>
   )
 }
 

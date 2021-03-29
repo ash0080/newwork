@@ -1,11 +1,12 @@
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env`,
 })
 
 module.exports = {
   siteMetadata: {
     title: "newwork",
-    siteUrl: process.env.GATSBY_SITE_URL
+    siteUrl: process.env.GATSBY_SITE_URL,
+    repo: 'ash0080/newwork'
   },
   plugins: [
     {
@@ -15,19 +16,43 @@ module.exports = {
         spaceId: process.env.CONTENTFUL_SPACE_ID,
       },
     },
+    'gatsby-plugin-preact',
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-gatsby-cloud",
+
     "gatsby-plugin-image",
+    "gatsby-plugin-sharp",
+    "gatsby-transformer-sharp",
+
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     {
       resolve: "gatsby-plugin-manifest",
       options: {
-        icon: "src/images/icon.png",
+        name: "NEWWORK",
+        short_name: "NEWWORK",
+        start_url: "/",
+        display: "standalone",
+        icon: "src/images/favicon.png",
       },
     },
-    "gatsby-plugin-sharp",
-    "gatsby-transformer-sharp",
+    // `gatsby-plugin-subfont`,
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    // options: {
+    //   plugins: [
+    //     {
+    //       resolve: `gatsby-remark-images-contentful`,
+    //       options: {
+    //         // It's important to specify the maxWidth (in pixels) of
+    //         // the content container as this plugin uses this as the
+    //         // base for generating different widths of each image.
+    //         maxWidth: 590,
+    //       },
+    //     },
+    //   ],
+    // },
+    // },
     {
       resolve: "gatsby-source-filesystem",
       options: {
