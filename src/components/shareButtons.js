@@ -22,6 +22,9 @@ const ShareButtons = (props) => {
     return (
         <Flex sx={{
             p: '1rem 0 2rem 0',
+            'button': {
+                m: 0
+            },
             'button:not(:last-child)': {
                 mr: '3px'
             }
