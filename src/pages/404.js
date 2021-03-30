@@ -32,7 +32,6 @@ const NotFoundPage = (props) => {
           flexGrow: 1
         }}>
         <main sx={{
-          flex: 99999,
           maxWidth: 660,
           mr: [0, 0, '5rem'],
           mb: '3rem'
@@ -49,7 +48,6 @@ const NotFoundPage = (props) => {
             flexBasis: 'sidebar',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center'
           }}>
           <StaticImage sx={{}} width={300} loading="lazy" placeholder="blurred" formats={['auto', 'jpg']} blurredOptions={{ width: 60, toFormat: 'jpg' }} alt="logo" src="../images/404.jpg"></StaticImage>
           <div sx={{ textAlign: 'center' }}>
