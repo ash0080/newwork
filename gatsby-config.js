@@ -19,7 +19,6 @@ module.exports = {
     'gatsby-plugin-preact',
     "gatsby-plugin-theme-ui",
     "gatsby-plugin-gatsby-cloud",
-    `gatsby-plugin-open-graph-images`,
     "gatsby-plugin-image",
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
