@@ -114,7 +114,7 @@ const BlogTemplate = (props) => {
                 <meta property="og:url" content={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`} />
                 <meta property="og:description" content={description} />
                 <meta property="og:title" content={props.data.contentfulBlogPost.title} />
-                <meta property="og:image" content={`http://newwork.cc/og/${props.data.contentfulBlogPost.slug}.png`} />
+                <meta property="og:image" content={`http://newwork.cc/og/${props.data.contentfulBlogPost.slug}.jpg`} />
                 <link rel="canonical" href={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`} />
             </Helmet>
             <div
