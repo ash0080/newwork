@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react'
 import { jsx, Grid, useThemeUI } from 'theme-ui'
 // import { Link } from 'gatsby'
-import { StaticImage } from "gatsby-plugin-image"
+// import { StaticImage } from "gatsby-plugin-image"
 import AutoLink from './autolink'
 import { elastic as Menu } from 'react-burger-menu'
 import logo from '../images/logo.svg'

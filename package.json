@@ -17,6 +17,7 @@
   "dependencies": {
     "@contentful/rich-text-plain-text-renderer": "^14.1.2",
     "@fontsource/zhi-mang-xing": "4.2.3",
+    "copy-text-to-clipboard": "^3.0.1",
     "gatsby": "3.1.1",
     "gatsby-awesome-pagination": "^0.3.6",
     "gatsby-plugin-gatsby-cloud": "2.1.0",

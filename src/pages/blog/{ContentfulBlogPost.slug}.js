@@ -9,14 +9,7 @@ import Layout from '../../components/layout'
 import Comments from '../../components/comments'
 import { Helmet } from 'react-helmet'
 import { documentToPlainTextString } from '@contentful/rich-text-plain-text-renderer';
-import {
-    FacebookShareButton,
-    FacebookIcon,
-    TelegramShareButton,
-    TelegramIcon,
-    TwitterShareButton,
-    TwitterIcon
-} from "react-share";
+import ShareButtons from '../../components/shareButtons'
 
 const Bold = ({ children }) => <strong>{children}</strong>
 const Text = ({ children }) => <p className="align-center">{children}</p>
@@ -140,32 +133,11 @@ const BlogTemplate = (props) => {
                         flexBasis: 'sidebar',
                     }}>
                     <small>如您觉得有用,请分享给一个朋友</small>
-                    <div sx={{
-                        p: '1rem 0 2rem 0',
-                        'button:not(:last-child)': {
-                            mr: '3px'
-                        }
-                    }}>
-                        <FacebookShareButton
-                            url={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`}
-                            quote={`${props.data.contentfulBlogPost.title} | NEWWORK.CC`}
-                        >
-                            <FacebookIcon size={32} borderRadius={8} round={false} />
-                        </FacebookShareButton>
-                        <TwitterShareButton
-                            url={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`}
-                            title={`${props.data.contentfulBlogPost.title} | NEWWORK.CC`}
-                            via={description}
-                        >
-                            <TwitterIcon size={32} borderRadius={8} round={false} />
-                        </TwitterShareButton>
-                        <TelegramShareButton
-                            url={`https://newwork.cc/blog/${props.data.contentfulBlogPost.slug}`}
-                            title={`${props.data.contentfulBlogPost.title} | NEWWORK.CC`}
-                        >
-                            <TelegramIcon size={32} borderRadius={8} round={false} />
-                        </TelegramShareButton>
-                    </div>
+                    <ShareButtons post={{
+                        title: props.data.contentfulBlogPost.title,
+                        slug: props.data.contentfulBlogPost.slug,
+                        description,
+                    }} />
                     <small>以下是评论功能 ( 如无显示您可能需要梯子 )</small>
                     <Comments />
                 </aside>

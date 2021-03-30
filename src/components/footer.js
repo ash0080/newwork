@@ -2,7 +2,7 @@
 import React from 'react'
 import { jsx, Flex } from 'theme-ui'
 // import { Link } from 'gatsby'
-import { StaticImage } from "gatsby-plugin-image"
+// import { StaticImage } from "gatsby-plugin-image"
 
 const Footer = () => {
     const year = new Date().getFullYear()
